@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ST10434307_Nyiko_Masinge_CLDV6212_P1.Models.QueueLogViewModel>
+
+@{
+    ViewData["Title"] = "Queue Logs";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Queue Logs</h2>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Message ID</th>
+                <th>DateTime Offset</th>
+                <th>Message Text</th>
+                <th>Insertion Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var log in Model)
+                {
+                    <tr>
+                        <td>@log.MessageID</td>
+                        <td>@log.DateTimeOffset</td>
+                        <td>@log.MessageText</td>
+                        <td>@log.InsertionTime</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted">No logs available</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Export Logs Button -->
+    <div class="text-end mt-3">
+        <a asp-controller="Log" asp-action="ExportLog" class="btn btn-success">
+            <i class="bi bi-download"></i> Export Logs
+        </a>
+    </div>
+</div>

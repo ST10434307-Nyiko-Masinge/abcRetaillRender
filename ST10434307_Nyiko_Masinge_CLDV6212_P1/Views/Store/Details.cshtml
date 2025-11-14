@@ -1,0 +1,72 @@
+@model ST10434307_Nyiko_Masinge_CLDV6212_P1.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+    Layout = "_StoreLayout";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="product-detail-image">
+                @if (!string.IsNullOrEmpty(Model.ImageURL))
+                {
+                    <img src="@Model.ImageURL" alt="@Model.Name" class="img-fluid" />
+                }
+                else
+                {
+                    <div class="no-image-large"><i class="fas fa-image fa-5x"></i></div>
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1 class="product-detail-name">@Model.Name</h1>
+            <p class="product-detail-category">Category: @Model.Category</p>
+            <p class="product-detail-price">R @Model.Price.ToString("F2")</p>
+            <p class="product-detail-description">@Model.Description</p>
+            
+            <div class="product-detail-stock">
+                @if (Model.StockQuantity > 0)
+                {
+                    <span class="badge bg-success">In Stock (@Model.StockQuantity available)</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Out of Stock</span>
+                }
+            </div>
+
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                @if (Model.StockQuantity > 0)
+                {
+                    <form asp-action="AddToCart" method="post" class="mt-4">
+                        <input type="hidden" name="productId" value="@Model.RowKey" />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="number" name="quantity" value="1" min="1" max="@Model.StockQuantity" class="form-control" />
+                            </div>
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                }
+            }
+            else
+            {
+                <div class="alert alert-info mt-4">
+                    <a asp-controller="Account" asp-action="Login">Login</a> to add items to your cart.
+                </div>
+            }
+
+            <div class="mt-4">
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Store
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

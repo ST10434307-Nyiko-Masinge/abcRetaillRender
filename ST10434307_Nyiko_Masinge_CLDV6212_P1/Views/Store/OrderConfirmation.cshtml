@@ -1,0 +1,32 @@
+@model ST10434307_Nyiko_Masinge_CLDV6212_P1.Models.Order
+@{
+    ViewData["Title"] = "Order Confirmation";
+    Layout = "_StoreLayout";
+}
+
+<div class="container mt-5">
+    <div class="order-confirmation">
+        <div class="confirmation-icon">
+            <i class="fas fa-check-circle fa-5x text-success"></i>
+        </div>
+        <h2>Order Confirmed!</h2>
+        <p class="lead">Thank you for your order. Your order number is: <strong>@Model.RowKey</strong></p>
+        
+        <div class="order-details mt-4">
+            <h4>Order Details</h4>
+            <p><strong>Order Date:</strong> @Model.OrderDate.ToString("f")</p>
+            <p><strong>Total Amount:</strong> R @Model.TotalAmount.ToString("F2")</p>
+            <p><strong>Status:</strong> <span class="badge bg-info">@Model.Status</span></p>
+        </div>
+
+        <div class="mt-4">
+            <a asp-action="OrderDetails" asp-route-id="@Model.RowKey" class="btn btn-primary">
+                View Order Details
+            </a>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                Continue Shopping
+            </a>
+        </div>
+    </div>
+</div>
+

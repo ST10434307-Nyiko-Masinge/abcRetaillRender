@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "ABC Retail Dashboard";
+    var data = Model;
+}
+
+@* 
+ Code attribution
+https://getbootstrap.com/docs/5.3/components/card/
+ https://getbootstrap.com/docs/5.3/layout/grid/
+ accessed 7 October 2025
+*@
+
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">ABC Retail Dashboard</h2>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary shadow-lg border-0 rounded-4">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-2x mb-3"></i>
+                    <h5>Total Customers</h5>
+                    <h3>@data.TotalCustomers</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-white bg-success shadow-lg border-0 rounded-4">
+                <div class="card-body text-center">
+                    <i class="fas fa-dollar-sign fa-2x mb-3"></i>
+                    <h5>Total Sales</h5>
+                    <h3>R @data.TotalSales</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-white bg-warning shadow-lg border-0 rounded-4">
+                <div class="card-body text-center">
+                    <i class="fas fa-box-open fa-2x mb-3"></i>
+                    <h5>Pending Orders</h5>
+                    <h3>@data.PendingOrders</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-white bg-danger shadow-lg border-0 rounded-4">
+                <div class="card-body text-center">
+                    <i class="fas fa-warehouse fa-2x mb-3"></i>
+                    <h5>Total Products</h5>
+                    <h3>@data.TotalProducts</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-body">
+                    <h5><i class="fas fa-chart-line"></i> Revenue Growth</h5>
+                    <p class="text-muted">Compared to last month</p>
+                    <h3 class="fw-bold text-success">@data.RevenueGrowth %</h3>
+                    <div class="progress mt-3">
+                        <div class="progress-bar bg-success" style="width:@data.RevenueGrowth%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-body">
+                    <h5><i class="fas fa-database"></i> Backend Summary</h5>
+                    <p>This dashboard provides a real-time overview of ABC Retail’s backend systems — including customers, orders, and revenue metrics.</p>
+                    <a href="/Customer/Index" class="btn btn-outline-primary">
+                        <i class="fas fa-eye"></i> View Customer Records
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*code attribution
+ https://fontawesome.com/icons
+ accessed 7 October 2025
+*@
+
+@section Scripts {
+    <style>
+        .card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease-in-out;
+        }
+        h2 {
+            font-weight: 700;
+            color: #343a40;
+        }
+    </style>
+}

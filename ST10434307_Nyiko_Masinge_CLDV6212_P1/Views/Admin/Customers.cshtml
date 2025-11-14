@@ -1,0 +1,41 @@
+@model List<ST10434307_Nyiko_Masinge_CLDV6212_P1.Models.Customer>
+@{
+    ViewData["Title"] = "Customers";
+    Layout = "_AdminLayout";
+}
+
+<div class="admin-page">
+    <h2><i class="fas fa-users"></i> Customers</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@customer.Name @customer.Surname</td>
+                        <td>@customer.Email</td>
+                        <td>@customer.PhoneNumber</td>
+                        <td>
+                            <a asp-controller="Customer" asp-action="Details" asp-route-partitionKey="@customer.PartitionKey" asp-route-rowKey="@customer.RowKey" class="btn btn-sm btn-primary">View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No customers found.</p>
+    }
+</div>
+

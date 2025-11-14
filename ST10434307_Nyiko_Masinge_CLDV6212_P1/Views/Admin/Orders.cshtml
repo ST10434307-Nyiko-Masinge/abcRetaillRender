@@ -1,0 +1,45 @@
+@model List<ST10434307_Nyiko_Masinge_CLDV6212_P1.Models.Order>
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "_AdminLayout";
+}
+
+<div class="admin-page">
+    <h2><i class="fas fa-shopping-bag"></i> All Orders</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Email</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.RowKey</td>
+                        <td>@order.UserEmail</td>
+                        <td>@order.OrderDate.ToString("g")</td>
+                        <td>R @order.TotalAmount.ToString("F2")</td>
+                        <td><span class="badge bg-@(order.Status == "Pending" ? "warning" : order.Status == "Shipped" ? "info" : order.Status == "Delivered" ? "success" : "secondary")">@order.Status</span></td>
+                        <td>
+                            <a asp-action="OrderDetails" asp-route-id="@order.RowKey" class="btn btn-sm btn-primary">View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No orders found.</p>
+    }
+</div>
+

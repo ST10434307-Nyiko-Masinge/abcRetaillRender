@@ -1,0 +1,17 @@
+﻿@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    
+    if (controller == "Admin" || controller == "Product" || (controller == "Customer" && User.IsInRole("Admin")))
+    {
+        Layout = "_AdminLayout";
+    }
+    else if (controller == "Store" || controller == "Account" || controller == "Home")
+    {
+        Layout = "_StoreLayout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}

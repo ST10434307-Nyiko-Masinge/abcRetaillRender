@@ -1,0 +1,45 @@
+﻿@model ST10434307_Nyiko_Masinge_CLDV6212_P1.Models.Customer
+
+@{
+    ViewData["Title"] = "Delete Customer";
+}
+
+<h1 class="text-3xl font-bold text-center my-6">Delete Customer</h1>
+
+<div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h3 class="text-xl font-semibold mb-4 text-center text-red-600">Are you sure you want to delete this customer?</h3>
+    <hr class="mb-6" />
+
+    <div class="space-y-4">
+        <div class="flex items-center space-x-4">
+            <span class="font-bold text-gray-700 w-32">Profile Picture:</span>
+            <div>
+                <img src="@Model.PhotoURL" alt="@(Model.Name) @(Model.Surname)" class="img-thumbnail rounded-circle" style="width: 80px; height: 80px; object-fit: cover;" />
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="font-bold text-gray-700 w-32">First Name:</span>
+            <span>@Html.DisplayFor(model => model.Name)</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="font-bold text-gray-700 w-32">Last Name:</span>
+            <span>@Html.DisplayFor(model => model.Surname)</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="font-bold text-gray-700 w-32">Email:</span>
+            <span>@Html.DisplayFor(model => model.Email)</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="font-bold text-gray-700 w-32">Phone Number:</span>
+            <span>@Html.DisplayFor(model => model.PhoneNumber)</span>
+        </div>
+    </div>
+
+    <form asp-action="Delete" class="mt-8 flex justify-between items-center">
+        <!-- Hidden fields to pass the unique keys to the controller's POST method -->
+        <input type="hidden" asp-for="PartitionKey" />
+        <input type="hidden" asp-for="RowKey" />
+        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300">Delete</button>
+        <a asp-action="Index" class="text-blue-500 hover:text-blue-800 transition duration-300">Back to List</a>
+    </form>
+</div>

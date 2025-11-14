@@ -1,0 +1,95 @@
+﻿@model ST10434307_Nyiko_Masinge_CLDV6212_P1.Models.Customer
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Customer Details</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>@Model.Name @Model.Surname</h4>
+                </div>
+                <div class="card-body text-center">
+                    @if (!string.IsNullOrEmpty(Model.PhotoURL))
+                    {
+                        <img src="@Model.PhotoURL" class="rounded-circle img-thumbnail mb-3" style="width:150px;height:150px;object-fit:cover;" />
+                    }
+                    else
+                    {
+                        <p class="text-muted mb-3">No photo available</p>
+                    }
+
+                    <ul class="list-group list-group-flush text-start">
+                        <li class="list-group-item"><strong>Email:</strong> @Model.Email</li>
+                        <li class="list-group-item"><strong>Phone Number:</strong> @Model.PhoneNumber</li>
+                        <li class="list-group-item"><strong>Partition Key:</strong> @Model.PartitionKey</li>
+                        <li class="list-group-item"><strong>Row Key:</strong> @Model.RowKey</li>
+                    </ul>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a asp-action="Edit" asp-route-partitionKey="@Model.PartitionKey" asp-route-rowKey="@Model.RowKey" class="btn btn-primary">
+                        Edit
+                    </a>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* @model ST10434307_Nyiko_Masinge_CLDV6212_P1.Models.Customer
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<h1 class="text-center my-4">Customer Details</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">@Model.Name @Model.Surname</h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        @if (!string.IsNullOrEmpty(Model.PhotoURL))
+                        {
+                            <img src="@Model.PhotoURL" class="rounded-circle img-thumbnail" alt="Profile Picture" style="width:150px; height:150px;" />
+                        }
+                        else
+                        {
+                            <div class="text-muted">No photo available</div>
+                        }
+                    </div>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Email:</strong> @Model.Email
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Phone Number:</strong> @Model.PhoneNumber
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Partition Key:</strong> @Model.PartitionKey
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Row Key:</strong> @Model.RowKey
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a asp-action="Edit" asp-route-partitionKey="@Model.PartitionKey" asp-route-rowKey="@Model.RowKey" class="btn btn-primary">
+                        Edit
+                    </a>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@

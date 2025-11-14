@@ -1,0 +1,78 @@
+@model ST10434307_Nyiko_Masinge_CLDV6212_P1.Controllers.CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "_StoreLayout";
+}
+
+<div class="container mt-5">
+    <h2><i class="fas fa-credit-card"></i> Checkout</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="checkout-form">
+                <form asp-action="Checkout" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <h4>Shipping Information</h4>
+                    <div class="form-group">
+                        <label asp-for="ShippingAddress" class="form-label"></label>
+                        <input asp-for="ShippingAddress" class="form-control" />
+                        <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ShippingCity" class="form-label"></label>
+                                <input asp-for="ShippingCity" class="form-control" />
+                                <span asp-validation-for="ShippingCity" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ShippingPostalCode" class="form-label"></label>
+                                <input asp-for="ShippingPostalCode" class="form-control" />
+                                <span asp-validation-for="ShippingPostalCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ShippingCountry" class="form-label"></label>
+                        <input asp-for="ShippingCountry" class="form-control" />
+                        <span asp-validation-for="ShippingCountry" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-check"></i> Place Order
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="order-summary">
+                <h4>Order Summary</h4>
+                @if (Model.Cart.Items != null)
+                {
+                    @foreach (var item in Model.Cart.Items)
+                    {
+                        <div class="summary-item">
+                            <span>@item.ProductName x @item.Quantity</span>
+                            <span>R @item.Subtotal.ToString("F2")</span>
+                        </div>
+                    }
+                }
+                <hr>
+                <div class="summary-total">
+                    <strong>Total: R @Model.Cart.Total.ToString("F2")</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
